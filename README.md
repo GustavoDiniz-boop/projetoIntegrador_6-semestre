@@ -5,3 +5,17 @@ Alexandre, trabalhe na tela principal, de começo é melhor você fazer com que 
 
 Prisciele, se conseguir, já faz o banco de dados e faz o commit aqui, lembrando gente, estamos sendo encorajados a usar inteligência artificial, vamos lá. Uma delas 
 que falei sobre ontem, é o blackbox.ai, usem ele e abusem quando forem fazer as alterações, não fiquem em duvida.
+
+ESTRUTURA DO PROJETO ATÉ AGORA:
+
+/petmatch
+│
+├── index.html          # Página inicial
+├── about.html          # Página sobre (opcional)
+│
+└── /assets             # Pasta para arquivos estáticos
+    ├── /css            # Estilos CSS (opcional)
+    └── /js             # Scripts JavaScript
+        └── main.js     # Script principal
+
+    
