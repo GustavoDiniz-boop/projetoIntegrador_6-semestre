@@ -50,5 +50,68 @@
             <span class="text-gray-600">Já tem uma conta? <a href="#" class="text-blue-600 hover:underline">Entrar</a></span>
         </div>
     </div>
+
+
+    <!-- Aqui é o código que tentei para criar o banco de dados, juntamente com o arquivo server.js na pasta. mas não está dando certo pra mim.-->
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previne o envio padrão do formulário
+    
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+    
+            // Enviar dados para o backend para login
+            fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao fazer login');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Login bem-sucedido!'); // Aqui você pode redirecionar o usuário ou fazer outra ação
+                console.log(data);
+            })
+            .catch(error => {
+                alert('Erro: ' + error.message);
+            });
+        });
+    
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previne o envio padrão do formulário
+    
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+    
+            // Enviar dados para o backend para cadastro
+            fetch('http://localhost:3000/cadastro', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao cadastrar');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Cadastro bem-sucedido!'); // Aqui você pode redirecionar o usuário ou fazer outra ação
+                console.log(data);
+            })
+            .catch(error => {
+                alert('Erro: ' + error.message);
+            });
+        });
+    </script>
+
 </body>
 </html>
