@@ -60,18 +60,28 @@ function filterPets(searchTerm) {
     }
 }
 
+// Função para adicionar/remover classe ativa
+function setActiveButton(button) {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => btn.classList.remove('bg-gray-200', 'font-bold'));
+    button.classList.add('bg-gray-200', 'font-bold');
+}
+
 // Adiciona eventos de clique aos botões
-document.getElementById('btn-gato').addEventListener('click', () => {
+document.getElementById('btn-gato').addEventListener('click', (event) => {
     currentCategory = 'gato';
     updatePetsList(currentCategory);
+    setActiveButton(event.currentTarget); // Adiciona a classe ativa
 });
-document.getElementById('btn-cachorro').addEventListener('click', () => {
+document.getElementById('btn-cachorro').addEventListener('click', (event) => {
     currentCategory = 'cachorro';
     updatePetsList(currentCategory);
+    setActiveButton(event.currentTarget);
 });
-document.getElementById('btn-coelho').addEventListener('click', () => {
+document.getElementById('btn-coelho').addEventListener('click', (event) => {
     currentCategory = 'coelho';
     updatePetsList(currentCategory);
+    setActiveButton(event.currentTarget);
 });
 
 // Inicializa a lista com a primeira categoria
