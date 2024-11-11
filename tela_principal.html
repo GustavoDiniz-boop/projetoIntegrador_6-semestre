@@ -1,104 +1,50 @@
-<html>
- <head>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body class="bg-purple-100">
-  <div class="max-w-screen-lg mx-auto p-4">
-   <!-- Search Bar -->
-   <div class="relative mb-4">
-    <input class="w-full p-2 pl-10 rounded-full border border-gray-300" placeholder="Search..." type="text"/>
-    <i class="fas fa-search absolute left-3 top-3 text-gray-500">
-    </i>
-   </div>
-   <!-- Banner -->
-   <div class="bg-blue-700 text-white rounded-lg p-4 flex items-center mb-4">
-    <div class="flex-1">
-     <h2 class="text-2xl font-bold">
-      Faça seu Match e Adote seu Pet!
-     </h2>
-     <p class="text-lg">
-      Mais de 800 Pets adotados a cada Dia!
-     </p>
-     <a class="text-sm underline" href="#">
-      Saiba Mais sobre nosso App aqui.
-     </a>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adote seu pet e faça um novo amigo! Mais de 800 pets disponíveis para adoção.">
+    <title>PetMatch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <script src="assets/js/main.js" defer></script> <!-- Inclui o script -->
+</head>
+<body class="bg-purple-100">
+    <div class="max-w-screen-lg mx-auto p-4">
+        <!-- Search Bar -->
+        <div class="relative mb-4">
+            <input class="w-full p-2 pl-10 rounded-full border border-gray-300" placeholder="Search..." type="text"/>
+            <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
+        </div>
+        
+        <!-- Banner -->
+        <div class="bg-blue-700 text-white rounded-lg p-4 flex items-center mb-4">
+            <div class="flex-1">
+                <h2 class="text-2xl font-bold">Faça seu Match e Adote seu Pet!</h2>
+                <p class="text-lg">Mais de 800 Pets adotados a cada Dia!</p>
+                <a class="text-sm underline" href="#">Saiba Mais sobre nosso App aqui.</a>
+            </div>
+            <img alt="Imagem de um cachorro Doberman" class="w-24 h-24 rounded-full" src="https://placehold.co/100x100"/>
+        </div>
+
+        <!-- Categories -->
+        <div class="flex justify-around mb-4">
+            <button id="btn-gato" class="text-center bg-white p-2 rounded shadow hover:bg-gray-200 flex flex-col items-center">
+                <img alt="Imagem de um gato" class="w-24 h-24 rounded-full mx-auto mb-2" src="https://placehold.co/100x100"/>
+                <p class="font-bold">Gatos</p>
+            </button>
+            <button id="btn-cachorro" class="text-center bg-white p-2 rounded shadow hover:bg-gray-200 flex flex-col items-center">
+                <img alt="Imagem de um cachorro" class="w-24 h-24 rounded-full mx-auto mb-2" src="https://placehold.co/100x100"/>
+                <p class="font-bold">Cachorros</p>
+            </button>
+            <button id="btn-coelho" class="text-center bg-white p-2 rounded shadow hover:bg-gray-200 flex flex-col items-center">
+                <img alt="Imagem de um coelho" class="w-24 h-24 rounded-full mx-auto mb-2" src="https://placehold.co/100x100"/>
+                <p class="font-bold">Coelhos</p>
+            </button>
+        </div>
+
+        <!-- Pets List -->
+        <div id="pets-list" class="grid grid-cols-2 gap-4 mt-4"></div>
     </div>
-    <img alt="Imagem de um cachorro Doberman" class="w-24 h-24 rounded-full" src="https://placehold.co/100x100"/>
-   </div>
-   <!-- Categories -->
-   <div class="flex justify-around mb-4">
-    <div class="text-center">
-     <img alt="Imagem de um gato" class="w-24 h-24 rounded-full mx-auto mb-2" src="https://placehold.co/100x100"/>
-     <p class="font-bold">
-      Gatos
-     </p>
-    </div>
-    <div class="text-center">
-     <img alt="Imagem de um cachorro" class="w-24 h-24 rounded-full mx-auto mb-2" src="https://placehold.co/100x100"/>
-     <p class="font-bold">
-      Cachorros
-     </p>
-    </div>
-    <div class="text-center">
-     <img alt="Imagem de um coelho" class="w-24 h-24 rounded-full mx-auto mb-2" src="https://placehold.co/100x100"/>
-     <p class="font-bold">
-      Coelhos
-     </p>
-    </div>
-   </div>
-   <!-- Pets List -->
-   <div class="grid grid-cols-2 gap-4">
-    <div class="bg-white rounded-lg shadow p-4">
-     <img alt="Imagem de um cachorro feliz" class="w-full h-40 object-cover rounded-lg mb-2" src="https://placehold.co/300x200"/>
-     <h3 class="text-blue-700 font-bold">
-      Vinicius, 1 ano
-     </h3>
-     <p>
-      Macho
-     </p>
-     <p>
-      Sumaré - SP
-     </p>
-    </div>
-    <div class="bg-white rounded-lg shadow p-4">
-     <img alt="Imagem de um cachorro Pomeranian" class="w-full h-40 object-cover rounded-lg mb-2" src="https://placehold.co/300x200"/>
-     <h3 class="text-blue-700 font-bold">
-      Estrela, 3 anos
-     </h3>
-     <p>
-      Fêmea
-     </p>
-     <p>
-      São Paulo - SP
-     </p>
-    </div>
-    <div class="bg-white rounded-lg shadow p-4">
-     <img alt="Imagem de um coelho branco" class="w-full h-40 object-cover rounded-lg mb-2" src="https://placehold.co/300x200"/>
-     <h3 class="text-blue-700 font-bold">
-      Coelho, 2 anos
-     </h3>
-     <p>
-      Macho
-     </p>
-     <p>
-      Campinas - SP
-     </p>
-    </div>
-    <div class="bg-white rounded-lg shadow p-4">
-     <img alt="Imagem de um gatinho" class="w-full h-40 object-cover rounded-lg mb-2" src="https://placehold.co/300x200"/>
-     <h3 class="text-blue-700 font-bold">
-      Gatinho, 6 meses
-     </h3>
-     <p>
-      Macho
-     </p>
-     <p>
-      Ribeirão Preto - SP
-     </p>
-    </div>
-   </div>
-  </div>
- </body>
+</body>
 </html>
