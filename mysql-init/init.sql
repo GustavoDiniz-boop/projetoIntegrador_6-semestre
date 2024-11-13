@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS Pets (
     size ENUM('small', 'medium', 'large'),
     color VARCHAR(50),
     special_needs BOOLEAN DEFAULT FALSE,
+    location VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (owner_id) REFERENCES Users(id)

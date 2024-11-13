@@ -1,4 +1,6 @@
-
+<?php
+require_once 'db_connect.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

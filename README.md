@@ -1,21 +1,24 @@
 # projetoIntegrador_6-semestre
 Projeto Integrador do PetMatch.
 
-Alexandre, trabalhe na tela principal, de começo é melhor você fazer com que a página funcione onde ela precisa, no sentido dos botões, filtro de pesquisa e perfis.
+Versão 1.0.6, front end quase finalizado, faltando pouquíssimos detalhes. Preparado para o back-end.
 
-Prisciele, se conseguir, já faz o banco de dados e faz o commit aqui, lembrando gente, estamos sendo encorajados a usar inteligência artificial, vamos lá. Uma delas 
-que falei sobre ontem, é o blackbox.ai, usem ele e abusem quando forem fazer as alterações, não fiquem em duvida.
+Utilização será de XAMPP e PHPMyAdmin para a integração do banco de dados com o front-end.
 
 ESTRUTURA DO PROJETO ATÉ AGORA:
 
 /petmatch
 │
-├── index.html          # Página inicial
-├── about.html          # Página sobre (opcional)
+├── tela_principal.html          # Página inicial.
+├── tela_rolagem.html            # Página de rolagem inspirada no Tinder.
+├── settings.html                # Página de configurações.
+├── login.html                   # Página de login de usuário.
+├── register.html                # Página de registro de usuário.
+├── user_profile.html            # Página do usuário.
+├── report_pet.html              # Página de redirecionamento para reportagem de perfis indevidos de pets.
+├── adoption_application.html    # Página de redirecionamento para adoção do pet após clicar no botão de adoção.
 │
 └── /assets             # Pasta para arquivos estáticos
-    ├── /css            # Estilos CSS (opcional)
-    └── /js             # Scripts JavaScript
-        └── main.js     # Script principal
 
-    
+Todos os arquivos possume javascript dentro do próprio arquivo devido de cada um. 
+O CSS das páginas também estão inclusos nelas como Tailwind CSS.
