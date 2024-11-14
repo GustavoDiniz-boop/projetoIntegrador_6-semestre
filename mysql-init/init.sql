@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS Pets (
     age INT,
     gender ENUM('male', 'female', 'unknown'),
     description TEXT,
+    image_url VARCHAR(255),
     status ENUM('available', 'adopted', 'pending') DEFAULT 'available',
     size ENUM('small', 'medium', 'large'),
     color VARCHAR(50),

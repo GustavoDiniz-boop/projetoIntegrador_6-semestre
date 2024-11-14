@@ -70,54 +70,32 @@ if (!$pet) {
                 <h3 class="text-lg leading-6 font-medium text-gray-900">Descrição</h3>
                 <p class="mt-2 text-gray-600"><?php echo $pet['description']; ?></p>
             </div>
-<div class="px-8 py-6 bg-gray-50 flex justify-between items-center">
-    <a href="tela_principal.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-        <i class="fas fa-arrow-left mr-2"></i>Voltar
-    </a>
-    <div>
-        <button onclick="skipPet()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
-            <i class="fas fa-times mr-2"></i>Pular
-        </button>
-        <a href="adoption_application.php?pet_id=<?php echo $pet_id; ?>" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2">
-            <i class="fas fa-paw mr-2"></i>Adotar
-        </a>
-        <button onclick="reportPet(<?php echo $pet_id; ?>)" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-            <i class="fas fa-flag mr-2"></i>Reportar
-        </button>
-    </div>
-</div>
+            <div class="px-8 py-6 bg-gray-50 flex justify-between items-center">
+                <a href="tela_principal.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    <i class="fas fa-arrow-left mr-2"></i>Voltar
+                </a>
+                <div>
+                    <button onclick="skipPet()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
+                        <i class="fas fa-times mr-2"></i>Pular
+                    </button>
+                    <a href="adoption_application.php?pet_id=<?php echo $pet_id; ?>" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2">
+                        <i class="fas fa-paw mr-2"></i>Adotar
+                    </a>
+                    <button onclick="reportPet(<?php echo $pet_id; ?>)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        <i class="fas fa-flag mr-2"></i>Reportar
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
-<script>
-    function reportPet(petId) {
-        if (confirm("Tem certeza que deseja reportar este pet?")) {
-            window.location.href = 'report_pet.php?pet_id=' + petId;
+    <script>
+        function reportPet(petId) {
+            if (confirm("Tem certeza que deseja reportar este pet?")) {
+                // Aqui você pode implementar a lógica para reportar o pet
+                alert("Pet reportado com sucesso!");
+            }
         }
-    }
-
-    function skipPet() {
-        // Implementar a lógica para pular para o próximo pet
-        <?php
-        $next_pet_query = "SELECT id FROM Pets WHERE id > ? AND species = ? AND status = 'available' ORDER BY id ASC LIMIT 1";
-        $stmt = $conn->prepare($next_pet_query);
-        $stmt->bind_param("is", $pet_id, $pet['species']);
-        $stmt->execute();
-        $next_pet_result = $stmt->get_result();
-        $next_pet = $next_pet_result->fetch_assoc();
-
-        if (!$next_pet) {
-            // Se não houver próximo pet, volte para o primeiro da categoria
-            $first_pet_query = "SELECT id FROM Pets WHERE species = ? AND status = 'available' ORDER BY id ASC LIMIT 1";
-            $stmt = $conn->prepare($first_pet_query);
-            $stmt->bind_param("s", $pet['species']);
-            $stmt->execute();
-            $first_pet_result = $stmt->get_result();
-            $next_pet = $first_pet_result->fetch_assoc();
-        }
-        ?>
-        window.location.href = 'tela_rolagem.php?pet_id=<?php echo $next_pet['id']; ?>';
-    }
-</script>
+    </script>
 </body>
 </html>

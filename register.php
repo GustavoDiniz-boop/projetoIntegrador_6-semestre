@@ -1,122 +1,89 @@
-<?php
-require_once 'db_connect.php';
-session_start();
 
-$error_message = "";
-$success_message = "";
+<?php
+session_start();
+require_once 'db_connect.php';
+
+$error = '';
+$success = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $confirm_password = $_POST['confirm-password'];
-
-    // Debug information
-    error_log("Submitted username: " . $username);
-    error_log("Submitted email: " . $email);
-
+    $confirm_password = $_POST['confirm_password'];
+    
     if ($password !== $confirm_password) {
-        $error_message = "Passwords do not match";
+        $error = "As senhas não coincidem.";
     } else {
-        // Check if email already exists
-        $check_email = "SELECT id FROM users WHERE email = ?";
+        // Verificar se o email já está em uso
+        $check_email = "SELECT id FROM Users WHERE email = ?";
         $stmt = $conn->prepare($check_email);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        
         if ($result->num_rows > 0) {
-            $error_message = "Email already exists";
+            $error = "Este email já está em uso.";
         } else {
-            // Insert new user
+            // Criar nova conta de usuário
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $insert_user = "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)";
+            $insert_user = "INSERT INTO Users (username, email, password_hash) VALUES (?, ?, ?)";
             $stmt = $conn->prepare($insert_user);
             $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-            // Debug information
-            error_log("SQL Query: " . $insert_user);
-            error_log("Bound username: " . $username);
-            error_log("Bound email: " . $email);
-
+            
             if ($stmt->execute()) {
-                // Debug information
-                error_log("Inserted user ID: " . $stmt->insert_id);
-                error_log("Affected rows: " . $stmt->affected_rows);
-                header("Location: tela_principal.php");
-                exit();
-                // Debug information
-                error_log("User registered successfully");
+                $success = "Conta criada com sucesso. Faça login para continuar.";
             } else {
-                $error_message = "Error occurred during registration. Please try again.";
-                // Debug information
-                error_log("Registration error: " . $stmt->error);
+                $error = "Erro ao criar conta. Tente novamente.";
             }
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>PetMatch - Registro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - PetMatch</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-96">
-        <div class="text-center mb-8">
-            <i class="fas fa-paw text-4xl text-blue-500"></i>
-            <h2 class="text-2xl font-bold mt-2">PetMatch</h2>
-        </div>
+        <h2 class="text-2xl font-semibold mb-6 text-center">Registro - PetMatch</h2>
         <?php
-        if (!empty($error_message)) {
-            echo "<p class='text-red-500 mb-4'>$error_message</p>";
+        if ($error) {
+            echo "<p class='text-red-500 mb-4'>$error</p>";
         }
-        if (!empty($success_message)) {
-            echo "<p class='text-green-500 mb-4'>$success_message</p>";
+        if ($success) {
+            echo "<p class='text-green-500 mb-4'>$success</p>";
         }
         ?>
         <form method="POST" action="">
             <div class="mb-4">
-                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                <input type="text" id="username" name="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <label for="username" class="block text-gray-700 font-bold mb-2">Nome de usuário</label>
+                <input type="text" id="username" name="username" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
             </div>
             <div class="mb-4">
-                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
-                <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                <input type="email" id="email" name="email" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
             </div>
             <div class="mb-4">
-                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
-                <input type="password" id="password" name="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <label for="password" class="block text-gray-700 font-bold mb-2">Senha</label>
+                <input type="password" id="password" name="password" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
             </div>
             <div class="mb-6">
-                <label for="confirm-password" class="block text-gray-700 text-sm font-bold mb-2">Confirmar Senha</label>
-                <input type="password" id="confirm-password" name="confirm-password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <label for="confirm_password" class="block text-gray-700 font-bold mb-2">Confirmar Senha</label>
+                <input type="password" id="confirm_password" name="confirm_password" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
             </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline">
                 Registrar
             </button>
         </form>
-        <div class="mt-6 text-center">
-            <p class="text-sm text-gray-600">Já tem uma conta? <a href="login.php" class="text-blue-500 hover:underline">Faça login</a></p>
-        </div>
+        <p class="mt-4 text-center">
+            Já tem uma conta? <a href="login.php" class="text-blue-500 hover:underline">Faça login</a>
+        </p>
     </div>
-</body>
-</html>
-
-<script>
-    document.querySelector('form').addEventListener('submit', function(e) {
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirm-password').value;
-
-        if (password !== confirmPassword) {
-            e.preventDefault();
-            alert('As senhas não coincidem');
-        }
-    });
-</script>
 </body>
 </html>

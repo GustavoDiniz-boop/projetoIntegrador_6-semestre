@@ -81,26 +81,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 <body class="bg-gray-100">
     <div class="flex">
         <!-- Sidebar -->
-        
-<div class="bg-blue-600 text-white w-64 min-h-screen p-4">
-    <h1 class="text-2xl font-bold mb-4">PetMatch</h1>
-    <ul>
-        <li class="mb-2"><a href="tela_principal.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-home mr-2"></i>Página Principal</a></li>
-        <li class="mb-2"><a href="user_profile.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-user mr-2"></i>Perfil</a></li>
-        <li class="mb-2"><a href="settings.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-cog mr-2"></i>Configurações</a></li>
-        <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-        <li class="mb-2"><a href="admin_dashboard.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-user-shield mr-2"></i>Admin Dashboard</a></li>
-        <?php endif; ?>
-        <li class="mb-2"><a href="logout.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-sign-out-alt mr-2"></i>Sair</a></li>
-    </ul>
-    <div class="mt-auto pt-4">
-        <div class="flex items-center">
-            <img src="https://via.placeholder.com/40" alt="Foto de perfil" class="w-10 h-10 rounded-full mr-2">
-            <span><?php echo $user['username']; ?></span>
+        <div class="bg-blue-600 text-white w-64 min-h-screen p-4">
+            <h1 class="text-2xl font-bold mb-4">PetMatch</h1>
+            <ul>
+                <li class="mb-2"><a href="tela_principal.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-home mr-2"></i>Página Principal</a></li>
+                <li class="mb-2"><a href="user_profile.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-user mr-2"></i>Perfil</a></li>
+                <li class="mb-2"><a href="settings.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-cog mr-2"></i>Configurações</a></li>
+                <?php if ($_SESSION['user_role'] === 'admin'): ?><li class="mb-2"><a href="admin_dashboard.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-user-shield mr-2"></i>Admin Dashboard</a><?php if ($_SESSION['user_role'] === 'admin'): ?><li class="mb-2"><a href="admin_dashboard.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-user-shield mr-2"></i>Admin Dashboard</a><?php endif; ?>
+                <li class="mb-2"><a href="logout.php" class="block p-2 hover:bg-blue-700 rounded"><i class="fas fa-sign-out-alt mr-2"></i>Sair</a></li>
+            </ul>
         </div>
-    </div>
-</div>
-
 
         <!-- Conteúdo principal -->
         <div class="flex-1 p-10">
