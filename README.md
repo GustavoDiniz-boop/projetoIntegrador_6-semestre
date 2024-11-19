@@ -22,3 +22,6 @@ ESTRUTURA DO PROJETO ATÉ AGORA:
 
 Todos os arquivos possume javascript dentro do próprio arquivo devido de cada um. 
 O CSS das páginas também estão inclusos nelas como Tailwind CSS.
+
+Todos os arquivos possume javascript dentro do próprio arquivo devido de cada um. 
+O CSS das páginas também estão inclusos nelas como Tailwind CSS.
